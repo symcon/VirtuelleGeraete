@@ -1,0 +1,10 @@
+{
+    "elements": [
+        {
+            "type": "NumberSpinner",
+            "name": "Capacity",
+            "caption": "Capacity",
+            "suffix": "kW"
+        }
+    ]
+}

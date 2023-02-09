@@ -1,0 +1,10 @@
+{
+    "translations": {
+        "de": {
+            "Capacity": "Leistung",
+            "Variance": "Varianz",
+            "Interval": "Intervall",
+            "seconds": "Sekunden"
+        }
+    }
+}
