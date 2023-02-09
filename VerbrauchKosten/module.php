@@ -19,7 +19,7 @@ declare(strict_types=1);
             $this->RegisterVariableFloat("Consumption", $this->Translate("StandBy Consumption"), $profileName, 0);
             $this->EnableAction("Consumption");
 
-            $profileName = "Euro";
+            $profileName = "EuroCent";
             if (!IPS_VariableProfileExists($profileName)) {
                 IPS_CreateVariableProfile($profileName, VARIABLETYPE_FLOAT);
                 IPS_SetVariableProfileText($profileName, "", " €");
@@ -28,7 +28,7 @@ declare(strict_types=1);
                 IPS_SetVariableProfileIcon($profileName, "Repeat");
             }
 
-            $this->RegisterVariableFloat("CostPerKiloWatt", $this->Translate("Cost per kWh"), "Euro", 1);
+            $this->RegisterVariableFloat("CostPerKiloWatt", $this->Translate("Cost per kWh"), "EuroCent", 1);
             $this->EnableAction("CostPerKiloWatt");
 
             $this->RegisterVariableFloat("TotalCostPerYear", $this->Translate("Total cost per year"), "~Euro", 2);
@@ -36,6 +36,7 @@ declare(strict_types=1);
 
         public function RequestAction($Ident, $Value)
         {
+            $this->SetValue($Ident, $Value);
             $this->SetValue("TotalCostPerYear", $this->GetValue("Consumption")/1000*$this->GetValue("CostPerKiloWatt")*24*365);
         }
     }
