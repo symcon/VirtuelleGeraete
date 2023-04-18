@@ -1,0 +1,10 @@
+{
+    "translations": {
+        "de": {
+            "Status": "Status",
+            "Intensity": "Helligkeit",
+            "Color": "Farbe",
+            "Temperature": "Farbtemperatur"
+        }
+    }
+}
