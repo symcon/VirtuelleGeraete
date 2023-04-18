@@ -1,0 +1,14 @@
+{
+    "id": "{C15B5EA3-6FA2-9EF3-1498-1BFE5B232A27}",
+    "name": "Virtual Shutter",
+    "type": 3,
+    "vendor": "",
+    "aliases": [
+        "Rollo (Simulation)"
+    ],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "VM",
+    "url": "https://www.symcon.de"
+}
