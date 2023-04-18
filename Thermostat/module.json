@@ -1,0 +1,14 @@
+{
+    "id": "{CAF42F8B-66EF-0EA3-FF6B-6EAF6B3ECEB7}",
+    "name": "Virtual Thermostat",
+    "type": 3,
+    "vendor": "",
+    "aliases": [
+        "Thermostat (Simulation)"
+    ],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "VM",
+    "url": "https://www.symcon.de"
+}
