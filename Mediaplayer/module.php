@@ -54,20 +54,26 @@ declare(strict_types=1);
 					switch($Value) {
 						case self::PREVIOUS:
 							$this->changeTitle(self::PREVIOUS);
+							$this->startPlayback();
 							return;
-							case self::STOP:
-							$this->SetTimerInterval('ProgressTimer', 0);
-							break;
+
+						case self::STOP:
+							$this->stopPlayback();
+							return;
+
 						case self::PLAY:
-							$this->SetTimerInterval('ProgressTimer', 1000);
+							$this->startPlayback();
 							$playlist = json_decode($this->GetValue('Playlist'), true);
 							$this->updateTitle($playlist['entries'], $playlist['current']);
-							break;
-							case self::PAUSE:
-								$this->SetTimerInterval('ProgressTimer', 0);
-							break;
+							return;
+
+						case self::PAUSE:
+							$this->stopPlayback();
+							return;
+
 						case self::NEXT:
 							$this->changeTitle(self::NEXT);
+							$this->startPlayback();
 							return;
 					}
 					break;
@@ -119,6 +125,16 @@ declare(strict_types=1);
 			} else {
 				$this->RequestAction('Progress', $newValue);
 			}
+		}
+
+		private function startPlayback() {
+			$this->SetTimerInterval('ProgressTimer', 1000);
+			$this->SetValue('Playback', self::PLAY);
+		}
+		
+		private function stopPlayback() {
+			$this->SetTimerInterval('ProgressTimer', 0);
+			$this->SetValue('Playback', self::PAUSE);
 		}
 
 		private function changeTitle($direction) {
