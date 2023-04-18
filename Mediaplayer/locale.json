@@ -1,0 +1,15 @@
+{
+    "translations": {
+        "de": {
+            "Playback": "Wiedergabe",
+            "Progress": "Fortschritt",
+            "Playlist": "Wiedergabeliste",
+            "Artist": "Künstler",
+            "Song": "Song",
+            "Volume": "Lautstärke",
+            "Repeat": "Wiederholen",
+            "Mute": "Stummschaltung",
+            "Shuffle": "Zufallswiedergabe"
+        }
+    }
+}

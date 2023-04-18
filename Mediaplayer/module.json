@@ -1,0 +1,14 @@
+{
+    "id": "{A61B1066-87D2-F606-67C1-F5D800C83FDB}",
+    "name": "Virtual Mediaplayer",
+    "type": 3,
+    "vendor": "",
+    "aliases": [
+        "Mediaplayer (Simulation)"
+    ],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "VM",
+    "url": "https://www.symcon.de"
+}
