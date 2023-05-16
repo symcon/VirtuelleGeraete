@@ -89,7 +89,7 @@ declare(strict_types=1);
             IPS_SetMediaFile($mediaID, "media/$mediaID.chart", false);
             $datasets = [];
             for ($i = 1; $i <= $this->ReadPropertyInteger('NumberOfCounters'); $i++) {
-                $color = '#' . dechex(rand(0, 0xffffff));
+                $color = '#' . str_pad(dechex(rand(0, 0xffffff)), 6, '0', STR_PAD_LEFT);
                 $datasets[] = [
                     'variableID' => $this->GetIDForIdent('Counter' . $i),
                     'fillColor' => $color,
