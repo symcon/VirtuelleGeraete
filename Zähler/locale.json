@@ -1,7 +1,13 @@
 {
     "translations": {
         "de": {
-            "Counter": "Zähler"
+            "Counter": "Zähler",
+            "Chart": "Graph",
+            "Number of Counters": "Anzahl Zähler",
+            "Min Value per hour": "Minimaler Wert pro Stunde",
+            "Max Value per hour": "Maximaler Wert pro Stunde",
+            "Maximum Distance between two following values": "Maximaler Abstand zwischen zwei folgenden Werten",
+            "Create Chart": "Erstelle Graphen"
         }
     }
 }
