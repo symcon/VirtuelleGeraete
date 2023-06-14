@@ -22,6 +22,11 @@
             "name": "MaxDistanceToNextValue",
             "caption": "Maximum Distance between two following values",
             "digits": 3
+        },
+        {
+            "type": "CheckBox",
+            "name": "DifferentProfiles",
+            "caption": "Use a different profile for each variable"
         }
     ],
     "actions": [

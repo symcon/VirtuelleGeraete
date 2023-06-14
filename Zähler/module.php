@@ -11,6 +11,7 @@ declare(strict_types=1);
             $this->RegisterPropertyFloat('MaxHourValue', 30);
             $this->RegisterPropertyFloat('MinHourValue', 10);
             $this->RegisterPropertyFloat('MaxDistanceToNextValue', 5);
+            $this->RegisterPropertyBoolean('DifferentProfiles', false);
 
             $this->RegisterTimer('AddValues', 1000 * 60 * 60, 'VC_AddValues(' . $this->InstanceID . ');');
         }
@@ -20,12 +21,32 @@ declare(strict_types=1);
             parent::ApplyChanges();
 
             for ($i = 1; $i <= $this->ReadPropertyInteger('NumberOfCounters'); $i++) {
-                $this->RegisterVariableFloat('Counter' . $i, $this->Translate('Counter') . ' ' . $i, '~Electricity', 0);
+                $profile = '~Electricity';
+                $individualProfileName = 'VirtualCounter' . $this->InstanceID . '-' . $i;
+                if ($this->ReadPropertyBoolean('DifferentProfiles')) {
+                    $profile = $individualProfileName;
+                    if (!IPS_VariableProfileExists($profile)) {
+                        IPS_CreateVariableProfile($profile, 2);
+                        IPS_SetVariableProfileDigits($profile, 2);
+                        IPS_SetVariableProfileIcon($profile, 'Electricity');
+                        IPS_SetVariableProfileText($profile, '', 'kWh');
+                    }
+                }
+                else if (IPS_VariableProfileExists($individualProfileName)) {
+                    IPS_DeleteVariableProfile($individualProfileName);
+                }
+                $this->RegisterVariableFloat('Counter' . $i, $this->Translate('Counter') . ' ' . $i, $profile, 0);
             }
 
             $i = $this->ReadPropertyInteger('NumberOfCounters') + 1;
             while(@$this->GetIDForIdent('Counter' . $i) !== false) {
                 $this->UnregisterVariable('Counter' . $i);
+
+                $individualProfileName = 'VirtualCounter' . $this->InstanceID . '-' . $i;
+                if (IPS_VariableProfileExists($individualProfileName)) {
+                    IPS_DeleteVariableProfile($individualProfileName);
+                }
+
                 $i++;
             }
 
