@@ -37,7 +37,7 @@ declare(strict_types=1);
 			$this->RegisterVariableBoolean('Shuffle', $this->Translate('Shuffle'), '~Shuffle', 0);
 			$this->EnableAction('Shuffle');
             $this->RegisterTimer('ProgressTimer', 0, 'VM_UpdateProgress($_IPS[\'TARGET\']);');
-			if (@!IPS_GetObjectIDByIdent('Cover')) {
+			if (@!IPS_GetObjectIDByIdent('Cover', $this->InstanceID)) {
 				$mediaID = IPS_CreateMedia(1);
 				$image = __DIR__ . '/cover.jpg';
 				IPS_SetMediaFile($mediaID, 'file.png', false);
