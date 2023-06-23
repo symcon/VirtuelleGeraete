@@ -37,13 +37,15 @@ declare(strict_types=1);
 			$this->RegisterVariableBoolean('Shuffle', $this->Translate('Shuffle'), '~Shuffle', 0);
 			$this->EnableAction('Shuffle');
             $this->RegisterTimer('ProgressTimer', 0, 'VM_UpdateProgress($_IPS[\'TARGET\']);');
-			$mediaID = IPS_CreateMedia(1);
-			$image = __DIR__ . '/cover.jpg';
-			IPS_SetMediaFile($mediaID, 'file.png', false);
-			IPS_SetMediaContent($mediaID, base64_encode((file_get_contents($image))));
-			IPS_SetName($mediaID, 'Cover'); 
-			IPS_SetIdent($mediaID, 'Cover');
-			IPS_SetParent($mediaID, $this->InstanceID); 
+			if (@!IPS_GetObjectIDByIdent('Cover')) {
+				$mediaID = IPS_CreateMedia(1);
+				$image = __DIR__ . '/cover.jpg';
+				IPS_SetMediaFile($mediaID, 'file.png', false);
+				IPS_SetMediaContent($mediaID, base64_encode((file_get_contents($image))));
+				IPS_SetName($mediaID, 'Cover'); 
+				IPS_SetParent($mediaID, $this->InstanceID); 
+				IPS_SetIdent($mediaID, 'Cover');
+			}
 		}
 
 		public function RequestAction($Ident, $Value)
