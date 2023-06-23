@@ -1,0 +1,14 @@
+{
+    "id": "{CAF42F8B-66EF-0EA3-FF6B-6EAF6B3ACEB7}",
+    "name": "Virtual Counter",
+    "type": 3,
+    "vendor": "",
+    "aliases": [
+        "Counter (Simulation)"
+    ],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "VC",
+    "url": "https://www.symcon.de"
+}

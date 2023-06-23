@@ -1,0 +1,39 @@
+{
+    "elements": [
+        {
+            "type": "NumberSpinner",
+            "name": "NumberOfCounters",
+            "caption": "Number of Counters"
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "MinHourValue",
+            "caption": "Min Value per hour",
+            "digits": 3
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "MaxHourValue",
+            "caption": "Max Value per hour",
+            "digits": 3
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "MaxDistanceToNextValue",
+            "caption": "Maximum Distance between two following values",
+            "digits": 3
+        },
+        {
+            "type": "CheckBox",
+            "name": "DifferentProfiles",
+            "caption": "Use a different profile for each variable"
+        }
+    ],
+    "actions": [
+        {
+            "type": "Button",
+            "caption": "Create Chart",
+            "onClick": "VC_CreateChart($id);"
+        }
+    ]
+}
