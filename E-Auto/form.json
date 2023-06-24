@@ -1,10 +1,81 @@
 {
     "elements": [
         {
+            "type": "Select",
+            "name": "Mode",
+            "caption": "Mode",
+            "options": [
+                {
+                    "caption": "Simple",
+                    "value": 0
+                },
+                {
+                    "caption": "Wallbox",
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "type": "Label",
+            "caption": ""
+        },
+        {
+            "type": "Label",
+            "caption": "This parameter only applies to 'Simple' mode"
+        },
+        {
             "type": "NumberSpinner",
             "name": "Capacity",
             "caption": "Capacity",
             "suffix": "Watt"
+        },
+        {
+            "type": "Label",
+            "caption": ""
+        },
+        {
+            "type": "Label",
+            "caption": "There parameters only applies to 'Wallbox' mode"
+        },
+        {
+            "type": "Select",
+            "name": "Phases",
+            "caption": "Phases",
+            "options": [
+                {
+                    "caption": "1-phased",
+                    "value": 1
+                },
+                {
+                    "caption": "3-phased",
+                    "value": 3
+                }
+            ]
+        },
+        {
+            "type": "CheckBox",
+            "name": "SplitPhases",
+            "caption": "Split phases to own variables (Simulate the Alfen Wallbox)"
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "MinCurrent",
+            "caption": "Min Current (per Phase)",
+            "suffix": "A"
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "MaxCurrent",
+            "caption": "Max Current (per Phase)",
+            "suffix": "A"
+        },
+        {
+            "type": "Label",
+            "caption": ""
+        },
+        {
+            "type": "Label",
+            "caption": "These parameters apply to all modes"
         },
         {
             "type": "NumberSpinner",
