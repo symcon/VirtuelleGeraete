@@ -49,6 +49,10 @@
                 {
                     "caption": "3-phased",
                     "value": 3
+                },
+                {
+                    "caption": "1 and 3-phased (automatic switching)",
+                    "value": 0
                 }
             ]
         },
