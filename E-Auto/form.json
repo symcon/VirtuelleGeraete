@@ -44,15 +44,38 @@
             "options": [
                 {
                     "caption": "1-phased",
-                    "value": 1
+                    "value": [
+                        {"name": "Phases", "value": 1},
+                        {"name": "Switching", "value": false}
+                    ]
+                },
+                {
+                    "caption": "2-phased",
+                    "value": [
+                        {"name": "Phases", "value": 2},
+                        {"name": "Switching", "value": false}
+                    ]
                 },
                 {
                     "caption": "3-phased",
-                    "value": 3
+                    "value": [
+                        {"name": "Phases", "value": 3},
+                        {"name": "Switching", "value": false}
+                    ]
+                },
+                {
+                    "caption": "1 and 2-phased (automatic switching)",
+                    "value": [
+                        {"name": "Phases", "value": 2},
+                        {"name": "Switching", "value": true}
+                    ]
                 },
                 {
                     "caption": "1 and 3-phased (automatic switching)",
-                    "value": 0
+                    "value": [
+                        {"name": "Phases", "value": 3},
+                        {"name": "Switching", "value": true}
+                    ]
                 }
             ]
         },

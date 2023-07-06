@@ -14,6 +14,7 @@ declare(strict_types=1);
 
             // Wallbox
             $this->RegisterPropertyInteger("Phases", 1);
+            $this->RegisterPropertyBoolean("Switching", false);
             $this->RegisterPropertyFloat("MinCurrent", 6);
             $this->RegisterPropertyFloat("MaxCurrent", 16);
             $this->RegisterPropertyBoolean("SplitPhases", false);
@@ -63,16 +64,21 @@ declare(strict_types=1);
                 IPS_SetVariableProfileDigits($profileNamePower, 0);
             }
 
-            $singlePhase = $this->ReadPropertyInteger("Phases") == 1;
+            $numberPhases = $this->ReadPropertyInteger("Phases");
             $splitPhases = $this->ReadPropertyBoolean("SplitPhases");
-            $autoPhase = $this->ReadPropertyInteger("Phases") == 0;
+            $switchPhase = $this->ReadPropertyBoolean("Switching");
 
-            $profileNamePhases = "PhaseState";
-            if (!$simpleMode && !$singlePhase && !IPS_VariableProfileExists($profileNamePhases)) {
+            $profileNamePhases = "PhaseState_" . $numberPhases;
+            if (!$simpleMode && ($numberPhases > 1) && !IPS_VariableProfileExists($profileNamePhases)) {
                 IPS_CreateVariableProfile($profileNamePhases, VARIABLETYPE_INTEGER);
                 IPS_SetVariableProfileValues($profileNamePhases, 1,3, 0);
-                IPS_SetVariableProfileAssociation($profileNamePhases, 1, "1-phased", "", 0);;
-                IPS_SetVariableProfileAssociation($profileNamePhases, 3, "3-phased", "", 0);;
+                IPS_SetVariableProfileAssociation($profileNamePhases, 1, "1-phased", "", 0);
+                if ($numberPhases == 2) {
+                    IPS_SetVariableProfileAssociation($profileNamePhases, 2, "2-phased", "", 0);
+                }
+                else {
+                    IPS_SetVariableProfileAssociation($profileNamePhases, 3, "3-phased", "", 0);
+                }
             }
 
             $this->MaintainVariable("Power", "Power (Target)", VARIABLETYPE_FLOAT, $profileNamePower, 0, !$simpleMode);
@@ -80,32 +86,36 @@ declare(strict_types=1);
                 $this->EnableAction("Power");
             }
 
-            $this->MaintainVariable("Phases", "Phases", VARIABLETYPE_INTEGER, $profileNamePhases, 1, !$simpleMode && !$singlePhase && $autoPhase);
-            if (!$simpleMode && !$singlePhase && $autoPhase) {
+            $this->MaintainVariable("Phases", "Phases", VARIABLETYPE_INTEGER, $profileNamePhases, 1, !$simpleMode && $numberPhases > 1 && $switchPhase);
+            if (!$simpleMode && $numberPhases > 1 && $switchPhase) {
                 $this->EnableAction("Phases");
                 if ($this->GetValue("Phases") == 0) {
-                    $this->SetValue("Phases", 3);
+                    $this->SetValue("Phases", $numberPhases);
                 }
             }
 
-            $this->MaintainVariable("Current", "Current", VARIABLETYPE_FLOAT, $profileNameAmpere, 2, !$simpleMode && $singlePhase);
-            if (!$simpleMode && $singlePhase) {
+            $this->MaintainVariable("Current", "Current", VARIABLETYPE_FLOAT, $profileNameAmpere, 2, !$simpleMode && $numberPhases == 1);
+            if (!$simpleMode && $numberPhases == 1) {
                 $this->EnableAction("Current");
             }
-            $this->MaintainVariable("CurrentL123", "Current (L1/L2/L3)", VARIABLETYPE_FLOAT, $profileNameAmpere, 3, !$simpleMode && !$splitPhases && !$singlePhase);
-            if (!$simpleMode && !$splitPhases && !$singlePhase) {
+            $this->MaintainVariable("CurrentL123", "Current (L1/L2/L3)", VARIABLETYPE_FLOAT, $profileNameAmpere, 3, !$simpleMode && !$splitPhases && $numberPhases == 3);
+            if (!$simpleMode && !$splitPhases && $numberPhases == 3) {
                 $this->EnableAction("CurrentL123");
             }
-            $this->MaintainVariable("CurrentL1", "Current (L1)", VARIABLETYPE_FLOAT, $profileNameAmpere, 4, !$simpleMode && $splitPhases && !$singlePhase);
-            if (!$simpleMode && $splitPhases && !$singlePhase) {
+            $this->MaintainVariable("CurrentL12", "Current (L1/L2)", VARIABLETYPE_FLOAT, $profileNameAmpere, 3, !$simpleMode && !$splitPhases && $numberPhases == 2);
+            if (!$simpleMode && !$splitPhases && $numberPhases == 2) {
+                $this->EnableAction("CurrentL12");
+            }
+            $this->MaintainVariable("CurrentL1", "Current (L1)", VARIABLETYPE_FLOAT, $profileNameAmpere, 4, !$simpleMode && $splitPhases && $numberPhases > 1);
+            if (!$simpleMode && $splitPhases && $numberPhases > 1) {
                 $this->EnableAction("CurrentL1");
             }
-            $this->MaintainVariable("CurrentL2", "Current (L2)", VARIABLETYPE_FLOAT, $profileNameAmpere, 5, !$simpleMode && $splitPhases && !$singlePhase);
-            if (!$simpleMode && $splitPhases && !$singlePhase) {
+            $this->MaintainVariable("CurrentL2", "Current (L2)", VARIABLETYPE_FLOAT, $profileNameAmpere, 5, !$simpleMode && $splitPhases && $numberPhases >= 2);
+            if (!$simpleMode && $splitPhases && $numberPhases >= 2) {
                 $this->EnableAction("CurrentL2");
             }
-            $this->MaintainVariable("CurrentL3", "Current (L3)", VARIABLETYPE_FLOAT, $profileNameAmpere, 6, !$simpleMode && $splitPhases && !$singlePhase);
-            if (!$simpleMode && $splitPhases && !$singlePhase) {
+            $this->MaintainVariable("CurrentL3", "Current (L3)", VARIABLETYPE_FLOAT, $profileNameAmpere, 6, !$simpleMode && $splitPhases && $numberPhases >= 3);
+            if (!$simpleMode && $splitPhases && $numberPhases >= 3) {
                 $this->EnableAction("CurrentL3");
             }
 
@@ -131,9 +141,6 @@ declare(strict_types=1);
                     $this->SetValue("CurrentL2", 0);
                     $this->SetValue("CurrentL3", 0);
                     break;
-                case "CurrentL123":
-                    $this->SetValue("CurrentL123", $Value);
-                    break;
                 case "CurrentL1":
                     $this->SetValue("CurrentL1", $Value);
                     break;
@@ -149,63 +156,81 @@ declare(strict_types=1);
                     }
                     $this->SetValue("CurrentL3", $Value);
                     break;
+                case "CurrentL12":
+                    $this->SetValue("CurrentL12", $Value);
+                    break;
+                case "CurrentL123":
+                    $this->SetValue("CurrentL123", $Value);
+                    break;
                 case "SoC":
                     $this->SetValue("SoC", $Value);
                     break;
                 case "Power":
-                    $current = $Value / 230 / ($this->ReadPropertyInteger("Phases") == 1 ? 1 : 3);
+                    $current = $Value / 230 / $this->ReadPropertyInteger("Phases");
                     if ($current < $this->ReadPropertyFloat("MinCurrent")) {
                         $current = 0;
                     }
                     if ($current > $this->ReadPropertyFloat("MaxCurrent")) {
                         $current = $this->ReadPropertyFloat("MaxCurrent");
                     }
+                    $onePhaseCurrent = $Value / 230;
+                    if ($onePhaseCurrent < $this->ReadPropertyFloat("MinCurrent")) {
+                        $onePhaseCurrent = 0;
+                    }
+                    if ($onePhaseCurrent > $this->ReadPropertyFloat("MaxCurrent")) {
+                        $onePhaseCurrent = $this->ReadPropertyFloat("MaxCurrent");
+                    }
+
                     switch($this->ReadPropertyInteger("Phases")) {
                         case 1:
+                            $this->SetValue("Phases", 1);
                             $this->SetValue("Current", $current);
                             break;
-                        case 3:
-                            if ($this->ReadPropertyBoolean("SplitPhases")) {
-                                $total = $current * 3;
-                                $this->SetValue("CurrentL1", floor($current));
-                                $this->SetValue("CurrentL2", floor($current));
-                                $this->SetValue("CurrentL3", $total - floor($current) * 2);
+                        case 2:
+                            if ($current == 0 && $this->ReadPropertyBoolean("Switching")) {
+                                $this->SetValue("Phases", 1);
+                                if ($this->ReadPropertyBoolean("SplitPhases")) {
+                                    $this->SetValue("CurrentL1", $onePhaseCurrent);
+                                    $this->SetValue("CurrentL2", 0);
+                                }
+                                else {
+                                    $this->SetValue("CurrentL12", $onePhaseCurrent);
+                                }
                             }
                             else {
-                                $this->SetValue("CurrentL123", $current);
+                                $this->SetValue("Phases", 2);
+                                if ($this->ReadPropertyBoolean("SplitPhases")) {
+                                    $total = $current * 2;
+                                    $this->SetValue("CurrentL1", floor($current));
+                                    $this->SetValue("CurrentL2", $total - floor($current));
+                                }
+                                else {
+                                    $this->SetValue("CurrentL12", $current);
+                                }
                             }
                             break;
-                        case 0:
-                            if ($current == 0) {
-                                $onePhaseCurrent = $Value / 230;
-                                if ($onePhaseCurrent > $this->ReadPropertyFloat("MinCurrent")) {
-                                    if ($onePhaseCurrent > $this->ReadPropertyFloat("MaxCurrent")) {
-                                        $onePhaseCurrent = $this->ReadPropertyFloat("MaxCurrent");
-                                    }
-                                    $this->SetValue("Phases", 1);
-                                    if ($this->ReadPropertyBoolean("SplitPhases")) {
-                                        $this->SetValue("CurrentL1", $onePhaseCurrent);
-                                        $this->SetValue("CurrentL2", 0);
-                                        $this->SetValue("CurrentL3", 0);
-                                    }
-                                    else {
-                                        $this->SetValue("CurrentL123", $onePhaseCurrent);
-                                    }
-                                    break;
+                        case 3:
+                            if ($current == 0 && $this->ReadPropertyBoolean("Switching")) {
+                                $this->SetValue("Phases", 1);
+                                if ($this->ReadPropertyBoolean("SplitPhases")) {
+                                    $this->SetValue("CurrentL1", $onePhaseCurrent);
+                                    $this->SetValue("CurrentL2", 0);
+                                    $this->SetValue("CurrentL3", 0);
                                 }
-                                // let it through, which will write the zero
+                                else {
+                                    $this->SetValue("CurrentL123", $onePhaseCurrent);
+                                }
                             }
                             else {
                                 $this->SetValue("Phases", 3);
-                            }
-                            if ($this->ReadPropertyBoolean("SplitPhases")) {
-                                $total = $current * 3;
-                                $this->SetValue("CurrentL1", floor($current));
-                                $this->SetValue("CurrentL2", floor($current));
-                                $this->SetValue("CurrentL3", $total - floor($current) * 2);
-                            }
-                            else {
-                                $this->SetValue("CurrentL123", $current);
+                                if ($this->ReadPropertyBoolean("SplitPhases")) {
+                                    $total = $current * 3;
+                                    $this->SetValue("CurrentL1", floor($current));
+                                    $this->SetValue("CurrentL2", floor($current));
+                                    $this->SetValue("CurrentL3", $total - floor($current) * 2);
+                                } else {
+                                    $this->SetValue("CurrentL123", $current);
+                                }
                             }
                             break;
                     }
@@ -225,18 +250,31 @@ declare(strict_types=1);
                     $value = $this->ReadPropertyFloat("Capacity") * ($this->GetValue("Intensity") / 100);
                     break;
                 case 1: //Wallbox Mode
-                    if ($this->ReadPropertyInteger("Phases") == 1) {
-                        $value = $this->GetValue("Current") * $volt;
-                    } else if (!$this->ReadPropertyBoolean("SplitPhases")){
-                        $value = $this->GetValue("CurrentL123") * $volt * $this->ReadPropertyInteger("Phases");
-                    } else if ($this->ReadPropertyBoolean("SplitPhases")){
-                        $value += $this->GetValue("CurrentL1") * $volt;
-                        $value += $this->GetValue("CurrentL2") * $volt;
-                        $value += $this->GetValue("CurrentL3") * $volt;
+                    switch($this->ReadPropertyInteger("Phases")) {
+                        case 1:
+                            $value = $this->GetValue("Current") * $volt;
+                            break;
+                        case 2:
+                            if (!$this->ReadPropertyBoolean("SplitPhases")) {
+                                $value = $this->GetValue("CurrentL12") * $volt * $this->ReadPropertyInteger("Phases");
+                            } else if ($this->ReadPropertyBoolean("SplitPhases")) {
+                                $value += $this->GetValue("CurrentL1") * $volt;
+                                $value += $this->GetValue("CurrentL2") * $volt;
+                            }
+                            break;
+                        case 3:
+                            if (!$this->ReadPropertyBoolean("SplitPhases")) {
+                                $value = $this->GetValue("CurrentL123") * $volt * $this->ReadPropertyInteger("Phases");
+                            } else if ($this->ReadPropertyBoolean("SplitPhases")) {
+                                $value += $this->GetValue("CurrentL1") * $volt;
+                                $value += $this->GetValue("CurrentL2") * $volt;
+                                $value += $this->GetValue("CurrentL3") * $volt;
+                            }
+                            break;
                     }
-                    $this->SetValue("Power", $value);
                     break;
             }
+            $this->SetValue("Power", $value);
             // Write value with variance
             $this->SetValue("Consumption", $value * ((100 + (rand(0, $this->ReadPropertyInteger("Variance") * 100)/100) - ($this->ReadPropertyInteger("Variance")/2)) / 100));
         }
