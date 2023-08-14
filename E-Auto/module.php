@@ -72,12 +72,12 @@ declare(strict_types=1);
             if (!$simpleMode && ($numberPhases > 1) && !IPS_VariableProfileExists($profileNamePhases)) {
                 IPS_CreateVariableProfile($profileNamePhases, VARIABLETYPE_INTEGER);
                 IPS_SetVariableProfileValues($profileNamePhases, 1,3, 0);
-                IPS_SetVariableProfileAssociation($profileNamePhases, 1, "1-phased", "", 0);
+                IPS_SetVariableProfileAssociation($profileNamePhases, 1, "1-phased", "", -1);
                 if ($numberPhases == 2) {
-                    IPS_SetVariableProfileAssociation($profileNamePhases, 2, "2-phased", "", 0);
+                    IPS_SetVariableProfileAssociation($profileNamePhases, 2, "2-phased", "", -1);
                 }
                 else {
-                    IPS_SetVariableProfileAssociation($profileNamePhases, 3, "3-phased", "", 0);
+                    IPS_SetVariableProfileAssociation($profileNamePhases, 3, "3-phased", "", -1);
                 }
             }
 
