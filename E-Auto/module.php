@@ -277,9 +277,9 @@ declare(strict_types=1);
                             }
                             break;
                     }
+                    $this->SetValue("Power", $value);
                     break;
             }
-            $this->SetValue("Power", $value);
             // Write value with variance
             $this->SetValue("Consumption", $value * ((100 + (rand(0, $this->ReadPropertyInteger("Variance") * 100)/100) - ($this->ReadPropertyInteger("Variance")/2)) / 100));
         }
