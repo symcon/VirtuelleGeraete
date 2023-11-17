@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-class Heizstab extends IPSModule
+class VirtualHeater extends IPSModule
 {
     public function Create()
     {

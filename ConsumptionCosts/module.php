@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-class VerbrauchKosten extends IPSModule
+class ConsumptionCosts extends IPSModule
 {
     public function Create()
     {

@@ -1,10 +1,10 @@
 {
-    "id": "{8CCD3592-047A-FE04-1EF2-2884BD90E575}",
-    "name": "PVAnlage",
+    "id": "{554BC118-FACE-A8BB-63B2-6BDD1B41A8F9}",
+    "name": "Consumption Costs",
     "type": 3,
     "vendor": "",
     "aliases": [
-        "PV-Anlage (Simulation)"
+        "Verbrauch/Kosten"
     ],
     "parentRequirements": [],
     "childRequirements": [],

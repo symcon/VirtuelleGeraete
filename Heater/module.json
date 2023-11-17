@@ -1,10 +1,10 @@
 {
-    "id": "{554BC118-FACE-A8BB-63B2-6BDD1B41A8F9}",
-    "name": "VerbrauchKosten",
+    "id": "{F4F4F985-47AC-8091-8A4A-53180EB38746}",
+    "name": "Virtual Heater",
     "type": 3,
     "vendor": "",
     "aliases": [
-        "Verbrauch/Kosten"
+        "Heizstab (Simulation)"
     ],
     "parentRequirements": [],
     "childRequirements": [],

@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-class PVAnlage extends IPSModule
+class PVSystem extends IPSModule
 {
     public function Create()
     {

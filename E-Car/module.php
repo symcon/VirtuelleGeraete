@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-class EAuto extends IPSModule
+class ECar extends IPSModule
 {
     public function Create()
     {
