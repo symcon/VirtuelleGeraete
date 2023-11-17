@@ -45,36 +45,66 @@
                 {
                     "caption": "1-phased",
                     "value": [
-                        {"name": "Phases", "value": 1},
-                        {"name": "Switching", "value": false}
+                        {
+                            "name": "Phases",
+                            "value": 1
+                        },
+                        {
+                            "name": "Switching",
+                            "value": false
+                        }
                     ]
                 },
                 {
                     "caption": "2-phased",
                     "value": [
-                        {"name": "Phases", "value": 2},
-                        {"name": "Switching", "value": false}
+                        {
+                            "name": "Phases",
+                            "value": 2
+                        },
+                        {
+                            "name": "Switching",
+                            "value": false
+                        }
                     ]
                 },
                 {
                     "caption": "3-phased",
                     "value": [
-                        {"name": "Phases", "value": 3},
-                        {"name": "Switching", "value": false}
+                        {
+                            "name": "Phases",
+                            "value": 3
+                        },
+                        {
+                            "name": "Switching",
+                            "value": false
+                        }
                     ]
                 },
                 {
                     "caption": "1 and 2-phased (automatic switching)",
                     "value": [
-                        {"name": "Phases", "value": 2},
-                        {"name": "Switching", "value": true}
+                        {
+                            "name": "Phases",
+                            "value": 2
+                        },
+                        {
+                            "name": "Switching",
+                            "value": true
+                        }
                     ]
                 },
                 {
                     "caption": "1 and 3-phased (automatic switching)",
                     "value": [
-                        {"name": "Phases", "value": 3},
-                        {"name": "Switching", "value": true}
+                        {
+                            "name": "Phases",
+                            "value": 3
+                        },
+                        {
+                            "name": "Switching",
+                            "value": true
+                        }
                     ]
                 }
             ]
