@@ -4,7 +4,31 @@
             "Capacity": "Leistung",
             "Variance": "Varianz",
             "Interval": "Intervall",
-            "seconds": "Sekunden"
+            "seconds": "Sekunden",
+            "Simple" : "Simpel",
+            "This parameter only applies to 'Simple' mode": "Dieser Parameter wird nur im 'Simpel'-Modus gesetzt",
+            "There parameters only applies to 'Wallbox' mode": "Diese Parameter werden nur im 'Wallbox'-Modus gesetzt",
+            "Phases": "Phasen",
+            "1-phased": "1-phasig",
+            "2-phased": "2-phasig",
+            "3-phased": "3-phasig",
+            "1 and 2-phased (automatic switching)": "1 und 2-phasig (automatisches umschalten)",
+            "1 and 3-phased (automatic switching)": "1 und 3-phasig (automatisches umschalten)",
+            "Split phases to own variables (Simulate the Alfen Wallbox)": "Teile die Phasen auf einzelne Variablen auf (Simuliert die Alfen Wallbox)",
+            "Min Current (per Phase)": "Minimale Stromstärke (pro Phase)",
+            "Max Current (per Phase)": "Maximale Stromstärke (pro Phase)",
+            "These parameters apply to all modes": "Diese Parameter werden in allen Modi gesetzt",
+            "E-Car (Simulation)": "E-Auto (Simulation)",
+            "Current": "Stromstärke",
+            "Current (L1/L2/L3)": "Stromstärke (L1/L2/L3)",
+            "Current (L1/L2)": "Stromstärke (L1/L2)",
+            "Current (L1)": "Stromstärke (L1)",
+            "Current (L2)": "Stromstärke (L2)",
+            "Current (L3)": "Stromstärke (L3)",
+            "SoC (Ist)": "Akkuladestand (Ist)",
+            "Power (Target)": "Leistung (Soll)",
+            "Consumption": "Verbrauch",
+            "Intensity": "Intensität"
         }
     }
 }

@@ -8,7 +8,8 @@
             "Max Value per hour": "Maximaler Wert pro Stunde",
             "Maximum Distance between two following values": "Maximaler Abstand zwischen zwei folgenden Werten",
             "Create Chart": "Erstelle Graphen",
-            "Use a different profile for each variable": "Verwende für jede Variable ein anderes Profil"
+            "Use a different profile for each variable": "Verwende für jede Variable ein anderes Profil",
+            "Counter (Simulation)": "Zähler (Simulation)"
         }
     }
 }

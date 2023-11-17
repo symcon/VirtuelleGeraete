@@ -2,7 +2,11 @@
     "translations": {
         "de": {
             "Set Point Temperature": "Soll Temperatur",
-            "Current Temperature": "Ist Temperatur"
+            "Current Temperature": "Ist Temperatur",
+            "Create logged values for current temperature": "Erstelle geloggte Werte für die aktuelle Temperatur",
+            "Hour": "Stunde",
+            "Value": "Wert"
+
         }
     }
 }

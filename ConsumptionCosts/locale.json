@@ -3,7 +3,8 @@
         "de": {
             "StandBy Consumption": "StandBy Verbrauch",
             "Cost per kWh": "Kosten pro kWh",
-            "Total cost per year": "Gesamtkosten pro Jahr"
+            "Total cost per year": "Gesamtkosten pro Jahr",
+            "Consumption/Costs": "Verbrauch/Kosten"
         }
     }
 }

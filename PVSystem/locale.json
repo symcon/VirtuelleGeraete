@@ -2,7 +2,8 @@
     "translations": {
         "de": {
             "Capacity": "Leistung",
-            "Production": "Erzeugung"
+            "Production": "Erzeugung",
+            "PV-System (Simulation)" : "PV-Anlage (Simulation)"
         }
     }
 }

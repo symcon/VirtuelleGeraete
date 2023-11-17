@@ -13,9 +13,9 @@ class VirtualHeater extends IPSModule
 
         $this->RegisterVariableBoolean('Status', 'Status', '~Switch', 0);
         $this->EnableAction('Status');
-        $this->RegisterVariableInteger('Intensity', 'Intensität', '~Intensity.100', 1);
+        $this->RegisterVariableInteger('Intensity', $this->Translate('Intensity'), '~Intensity.100', 1);
         $this->EnableAction('Intensity');
-        $this->RegisterVariableFloat('Consumption', 'Verbrauch', '~Watt', 2);
+        $this->RegisterVariableFloat('Consumption', $this->Translate('Consumption'), '~Watt', 2);
 
         $this->RegisterTimer('Update', 0, 'VG_Update($_IPS["TARGET"]);');
     }
@@ -48,8 +48,7 @@ class VirtualHeater extends IPSModule
     {
         if (!$this->GetValue('Intensity')) {
             $this->SetValue('Consumption', 0);
-        }
-        else {
+        } else {
             $this->SetValue('Consumption', $this->ReadPropertyFloat('Capacity') * ($this->GetValue('Intensity') / 100) * ((100 + (rand(0, $this->ReadPropertyInteger('Variance') * 100) / 100) - ($this->ReadPropertyInteger('Variance') / 2)) / 100));
         }
     }

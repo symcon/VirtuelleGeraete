@@ -4,7 +4,8 @@
             "Status": "Status",
             "Intensity": "Helligkeit",
             "Color": "Farbe",
-            "Temperature": "Farbtemperatur"
+            "Temperature": "Farbtemperatur",
+            "Light (Simulation)": "Licht (Simulation)"
         }
     }
 }

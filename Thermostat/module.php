@@ -7,7 +7,7 @@ class VirtualThermostat extends IPSModule
     {
         parent::Create();
 
-        $this->RegisterVariableFloat('SetPoint', $this->Translate('Set Point Temprature'), '~Temperature.Room', 0);
+        $this->RegisterVariableFloat('SetPoint', $this->Translate('Set Point Temperature'), '~Temperature.Room', 0);
         $this->EnableAction('SetPoint');
         $this->RegisterVariableFloat('Current', $this->Translate('Current Temperature'), '~Temperature.Room', 1);
 

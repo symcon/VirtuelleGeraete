@@ -22,9 +22,9 @@ class ECar extends IPSModule
         $this->RegisterPropertyInteger('Variance', 3);
         $this->RegisterPropertyInteger('Interval', 3);
 
-        $this->RegisterVariableFloat('Consumption', 'Verbrauch', '~Watt', 2);
+        $this->RegisterVariableFloat('Consumption', $this->Translate('Consumption'), '~Watt', 2);
 
-        $this->RegisterVariableInteger('SoC', 'SoC (Ist)', '~Intensity.100', 3);
+        $this->RegisterVariableInteger('SoC', $this->Translate('SoC (Ist)'), '~Intensity.100', 3);
         $this->EnableAction('SoC');
 
         $this->RegisterTimer('Update', 0, 'VG_Update($_IPS["TARGET"]);');
@@ -38,11 +38,11 @@ class ECar extends IPSModule
         $simpleMode = $this->ReadPropertyInteger('Mode') == 0;
 
         // Use/load the car like a dimmable device
-        $this->MaintainVariable('Status', 'Status', VARIABLETYPE_BOOLEAN, '~Switch', 0, $simpleMode);
+        $this->MaintainVariable('Status', $this->Translate('Status'), VARIABLETYPE_BOOLEAN, '~Switch', 0, $simpleMode);
         if ($simpleMode) {
             $this->EnableAction('Status');
         }
-        $this->MaintainVariable('Intensity', 'Intensität', VARIABLETYPE_INTEGER, '~Intensity.100', 1, $simpleMode);
+        $this->MaintainVariable('Intensity', $this->Translate('Intensity'), VARIABLETYPE_INTEGER, '~Intensity.100', 1, $simpleMode);
         if ($simpleMode) {
             $this->EnableAction('Intensity');
         }
@@ -75,18 +75,17 @@ class ECar extends IPSModule
             IPS_SetVariableProfileAssociation($profileNamePhases, 1, '1-phased', '', -1);
             if ($numberPhases == 2) {
                 IPS_SetVariableProfileAssociation($profileNamePhases, 2, '2-phased', '', -1);
-            }
-            else {
+            } else {
                 IPS_SetVariableProfileAssociation($profileNamePhases, 3, '3-phased', '', -1);
             }
         }
 
-        $this->MaintainVariable('Power', 'Power (Target)', VARIABLETYPE_FLOAT, $profileNamePower, 0, !$simpleMode);
+        $this->MaintainVariable('Power', $this->Translate('Power (Target)'), VARIABLETYPE_FLOAT, $profileNamePower, 0, !$simpleMode);
         if (!$simpleMode) {
             $this->EnableAction('Power');
         }
 
-        $this->MaintainVariable('Phases', 'Phases', VARIABLETYPE_INTEGER, $profileNamePhases, 1, !$simpleMode && $numberPhases > 1 && $switchPhase);
+        $this->MaintainVariable('Phases', $this->Translate('Phases'), VARIABLETYPE_INTEGER, $profileNamePhases, 1, !$simpleMode && $numberPhases > 1 && $switchPhase);
         if (!$simpleMode && $numberPhases > 1 && $switchPhase) {
             $this->EnableAction('Phases');
             if ($this->GetValue('Phases') == 0) {
@@ -94,27 +93,27 @@ class ECar extends IPSModule
             }
         }
 
-        $this->MaintainVariable('Current', 'Current', VARIABLETYPE_FLOAT, $profileNameAmpere, 2, !$simpleMode && $numberPhases == 1);
+        $this->MaintainVariable('Current', $this->Translate('Current'), VARIABLETYPE_FLOAT, $profileNameAmpere, 2, !$simpleMode && $numberPhases == 1);
         if (!$simpleMode && $numberPhases == 1) {
             $this->EnableAction('Current');
         }
-        $this->MaintainVariable('CurrentL123', 'Current (L1/L2/L3)', VARIABLETYPE_FLOAT, $profileNameAmpere, 3, !$simpleMode && !$splitPhases && $numberPhases == 3);
+        $this->MaintainVariable('CurrentL123', $this->Translate('Current (L1/L2/L3)'), VARIABLETYPE_FLOAT, $profileNameAmpere, 3, !$simpleMode && !$splitPhases && $numberPhases == 3);
         if (!$simpleMode && !$splitPhases && $numberPhases == 3) {
             $this->EnableAction('CurrentL123');
         }
-        $this->MaintainVariable('CurrentL12', 'Current (L1/L2)', VARIABLETYPE_FLOAT, $profileNameAmpere, 3, !$simpleMode && !$splitPhases && $numberPhases == 2);
+        $this->MaintainVariable('CurrentL12', $this->Translate('Current (L1/L2)'), VARIABLETYPE_FLOAT, $profileNameAmpere, 3, !$simpleMode && !$splitPhases && $numberPhases == 2);
         if (!$simpleMode && !$splitPhases && $numberPhases == 2) {
             $this->EnableAction('CurrentL12');
         }
-        $this->MaintainVariable('CurrentL1', 'Current (L1)', VARIABLETYPE_FLOAT, $profileNameAmpere, 4, !$simpleMode && $splitPhases && $numberPhases > 1);
+        $this->MaintainVariable('CurrentL1', $this->Translate('Current (L1)'), VARIABLETYPE_FLOAT, $profileNameAmpere, 4, !$simpleMode && $splitPhases && $numberPhases > 1);
         if (!$simpleMode && $splitPhases && $numberPhases > 1) {
             $this->EnableAction('CurrentL1');
         }
-        $this->MaintainVariable('CurrentL2', 'Current (L2)', VARIABLETYPE_FLOAT, $profileNameAmpere, 5, !$simpleMode && $splitPhases && $numberPhases >= 2);
+        $this->MaintainVariable('CurrentL2', $this->Translate('Current (L2)'), VARIABLETYPE_FLOAT, $profileNameAmpere, 5, !$simpleMode && $splitPhases && $numberPhases >= 2);
         if (!$simpleMode && $splitPhases && $numberPhases >= 2) {
             $this->EnableAction('CurrentL2');
         }
-        $this->MaintainVariable('CurrentL3', 'Current (L3)', VARIABLETYPE_FLOAT, $profileNameAmpere, 6, !$simpleMode && $splitPhases && $numberPhases >= 3);
+        $this->MaintainVariable('CurrentL3', $this->Translate('Current (L3)'), VARIABLETYPE_FLOAT, $profileNameAmpere, 6, !$simpleMode && $splitPhases && $numberPhases >= 3);
         if (!$simpleMode && $splitPhases && $numberPhases >= 3) {
             $this->EnableAction('CurrentL3');
         }
@@ -191,12 +190,10 @@ class ECar extends IPSModule
                             if ($this->ReadPropertyBoolean('SplitPhases')) {
                                 $this->SetValue('CurrentL1', $onePhaseCurrent);
                                 $this->SetValue('CurrentL2', 0);
-                            }
-                            else {
+                            } else {
                                 $this->SetValue('CurrentL12', $onePhaseCurrent);
                             }
-                        }
-                        else {
+                        } else {
                             if ($this->ReadPropertyBoolean('Switching')) {
                                 $this->SetValue('Phases', 2);
                             }
@@ -204,8 +201,7 @@ class ECar extends IPSModule
                                 $total = $current * 2;
                                 $this->SetValue('CurrentL1', floor($current));
                                 $this->SetValue('CurrentL2', $total - floor($current));
-                            }
-                            else {
+                            } else {
                                 $this->SetValue('CurrentL12', $current);
                             }
                         }
@@ -217,12 +213,10 @@ class ECar extends IPSModule
                                 $this->SetValue('CurrentL1', $onePhaseCurrent);
                                 $this->SetValue('CurrentL2', 0);
                                 $this->SetValue('CurrentL3', 0);
-                            }
-                            else {
+                            } else {
                                 $this->SetValue('CurrentL123', $onePhaseCurrent);
                             }
-                        }
-                        else {
+                        } else {
                             if ($this->ReadPropertyBoolean('Switching')) {
                                 $this->SetValue('Phases', 3);
                             }

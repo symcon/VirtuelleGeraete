@@ -4,7 +4,10 @@
             "Capacity": "Leistung",
             "Variance": "Varianz",
             "Interval": "Intervall",
-            "seconds": "Sekunden"
+            "seconds": "Sekunden",
+            "Heater (Simulation)": "Heizstab (Simulation)",
+            "Consumption": "Verbrauch",
+            "Intensity": "Intensität"
         }
     }
 }
