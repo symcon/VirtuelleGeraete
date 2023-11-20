@@ -5,7 +5,7 @@
             "Variance": "Varianz",
             "Interval": "Intervall",
             "seconds": "Sekunden",
-            "Simple" : "Simpel",
+            "Simple": "Simpel",
             "This parameter only applies to 'Simple' mode": "Dieser Parameter wird nur im 'Simpel'-Modus gesetzt",
             "There parameters only applies to 'Wallbox' mode": "Diese Parameter werden nur im 'Wallbox'-Modus gesetzt",
             "Phases": "Phasen",
