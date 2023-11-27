@@ -1,0 +1,150 @@
+{
+    "elements": [
+        {
+            "type": "Select",
+            "name": "Mode",
+            "caption": "Mode",
+            "options": [
+                {
+                    "caption": "Simple",
+                    "value": 0
+                },
+                {
+                    "caption": "Wallbox",
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "type": "Label",
+            "caption": ""
+        },
+        {
+            "type": "Label",
+            "caption": "This parameter only applies to 'Simple' mode"
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "Capacity",
+            "caption": "Capacity",
+            "suffix": "Watt"
+        },
+        {
+            "type": "Label",
+            "caption": ""
+        },
+        {
+            "type": "Label",
+            "caption": "There parameters only applies to 'Wallbox' mode"
+        },
+        {
+            "type": "Select",
+            "name": "Phases",
+            "caption": "Phases",
+            "options": [
+                {
+                    "caption": "1-phased",
+                    "value": [
+                        {
+                            "name": "Phases",
+                            "value": 1
+                        },
+                        {
+                            "name": "Switching",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "caption": "2-phased",
+                    "value": [
+                        {
+                            "name": "Phases",
+                            "value": 2
+                        },
+                        {
+                            "name": "Switching",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "caption": "3-phased",
+                    "value": [
+                        {
+                            "name": "Phases",
+                            "value": 3
+                        },
+                        {
+                            "name": "Switching",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "caption": "1 and 2-phased (automatic switching)",
+                    "value": [
+                        {
+                            "name": "Phases",
+                            "value": 2
+                        },
+                        {
+                            "name": "Switching",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "caption": "1 and 3-phased (automatic switching)",
+                    "value": [
+                        {
+                            "name": "Phases",
+                            "value": 3
+                        },
+                        {
+                            "name": "Switching",
+                            "value": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "CheckBox",
+            "name": "SplitPhases",
+            "caption": "Split phases to own variables (Simulate the Alfen Wallbox)"
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "MinCurrent",
+            "caption": "Min Current (per Phase)",
+            "suffix": "A"
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "MaxCurrent",
+            "caption": "Max Current (per Phase)",
+            "suffix": "A"
+        },
+        {
+            "type": "Label",
+            "caption": ""
+        },
+        {
+            "type": "Label",
+            "caption": "These parameters apply to all modes"
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "Variance",
+            "caption": "Variance",
+            "suffix": "%"
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "Interval",
+            "caption": "Interval",
+            "suffix": "seconds"
+        }
+    ]
+}

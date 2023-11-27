@@ -1,10 +1,10 @@
 {
-    "id": "{C15B5EA3-6FA2-9EF3-1498-1BFE5B232A27}",
-    "name": "Virtual Shutter",
+    "id": "{6BF11B43-77F7-8ACE-DF27-E5921360F7ED}",
+    "name": "ECar",
     "type": 3,
     "vendor": "",
     "aliases": [
-        "Shutter (Simulation)"
+        "E-Car (Simulation)"
     ],
     "parentRequirements": [],
     "childRequirements": [],

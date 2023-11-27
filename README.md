@@ -2,23 +2,23 @@
 
 Folgende Module beinhaltet das VirtuelleModule Repository:
 
-- __PVAnlage__ ([Dokumentation](PVAnlage))  
-	Kurze Beschreibung des Moduls.
+- __PVAnlage__ ([Dokumentation](https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/pv-anlage-simulation/))  
+	Simulation einer PV-Anlage.
 
-- __Heizstab__ ([Dokumentation](Heizstab))  
-	Kurze Beschreibung des Moduls.
+- __Heizstab__ ([Dokumentation](https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/heizstab-simulation/))  
+	Simulation eines Heizstabes.
 
-- __VerbrauchKosten__ ([Dokumentation](VerbrauchKosten))  
-	Kurze Beschreibung des Moduls.
+- __VerbrauchKosten__ ([Dokumentation](https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/verbrauch-kosten/))  
+	Berechnet die Kosten anhand des Verbrauchs
 
-- __Licht__ ([Dokumentation](Licht))  
-	Kurze Beschreibung des Moduls.
+- __Licht__ ([Dokumentation](https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/licht-simulation/))  
+	Simuliert ein Licht. 
 
-- __Mediaplayer__ ([Dokumentation](Mediaplayer))  
-	Kurze Beschreibung des Moduls.
+- __Mediaplayer__ ([Dokumentation](https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/mediaplayer-simulation/))  
+	Simuliert einen Mediaplayer.
 
-- __Thermostat__ ([Dokumentation](Thermostat))  
-	Kurze Beschreibung des Moduls.
+- __Thermostat__ ([Dokumentation](https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/thermostat-simulation/))  
+	Simuliert ein Thermostat.
 
-- __Shutter__ ([Dokumentation](Shutter))  
-	Kurze Beschreibung des Moduls.
+- __Shutter__ ([Dokumentation](https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/rollladen-simulation/))  
+	Simmuliert ein Rollladen. 

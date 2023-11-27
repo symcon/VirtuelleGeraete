@@ -1,0 +1,13 @@
+{
+    "translations": {
+        "de": {
+            "Capacity": "Leistung",
+            "Variance": "Varianz",
+            "Interval": "Intervall",
+            "seconds": "Sekunden",
+            "Heater (Simulation)": "Heizstab (Simulation)",
+            "Consumption": "Verbrauch",
+            "Intensity": "Intensität"
+        }
+    }
+}

@@ -1,10 +1,10 @@
 {
-    "id": "{C15B5EA3-6FA2-9EF3-1498-1BFE5B232A27}",
-    "name": "Virtual Shutter",
+    "id": "{C3C3413F-101D-3E1B-B7D0-DDAB70A8C1FD}",
+    "name": "Virtual Light",
     "type": 3,
     "vendor": "",
     "aliases": [
-        "Shutter (Simulation)"
+        "Light (Simulation)"
     ],
     "parentRequirements": [],
     "childRequirements": [],

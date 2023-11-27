@@ -1,10 +1,10 @@
 {
-    "id": "{C15B5EA3-6FA2-9EF3-1498-1BFE5B232A27}",
-    "name": "Virtual Shutter",
+    "id": "{8CCD3592-047A-FE04-1EF2-2884BD90E575}",
+    "name": "PVSystem",
     "type": 3,
     "vendor": "",
     "aliases": [
-        "Shutter (Simulation)"
+        "PV-System (Simulation)"
     ],
     "parentRequirements": [],
     "childRequirements": [],

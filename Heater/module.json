@@ -1,10 +1,10 @@
 {
-    "id": "{C15B5EA3-6FA2-9EF3-1498-1BFE5B232A27}",
-    "name": "Virtual Shutter",
+    "id": "{F4F4F985-47AC-8091-8A4A-53180EB38746}",
+    "name": "Virtual Heater",
     "type": 3,
     "vendor": "",
     "aliases": [
-        "Shutter (Simulation)"
+        "Heater (Simulation)"
     ],
     "parentRequirements": [],
     "childRequirements": [],
