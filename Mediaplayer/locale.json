@@ -9,7 +9,9 @@
             "Volume": "Lautstärke",
             "Repeat": "Wiederholen",
             "Mute": "Stummschaltung",
-            "Shuffle": "Zufallswiedergabe"
+            "Shuffle": "Zufallswiedergabe",
+            "https://www.symcon.de/en/service/documentation/module-reference/virtuelle-devices/mediaplayer-simulation/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/mediaplayer-simulation/",
+            "Virtual Mediaplayer": " Virtueller Mediaplayer"
         }
     }
 }

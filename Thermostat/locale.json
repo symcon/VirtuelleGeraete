@@ -5,7 +5,9 @@
             "Current Temperature": "Ist Temperatur",
             "Create logged values for current temperature": "Erstelle geloggte Werte für die aktuelle Temperatur",
             "Hour": "Stunde",
-            "Value": "Wert"
+            "Value": "Wert",
+            "https://www.symcon.de/en/service/documentation/module-reference/virtuelle-devices/thermostat-simulation/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/thermostat-simulation/",
+            "Virtual Thermostat": "Virtuelles Thermostat"
         }
     }
 }

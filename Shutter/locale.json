@@ -3,7 +3,9 @@
         "de": {
             "Shutter": "Jalousie",
             "Lamella": "Lamelle",
-            "Shutter (Simulation)": "Rollladen (Simulation)"
+            "Shutter (Simulation)": "Rollladen (Simulation)",
+            "https://www.symcon.de/en/service/documentation/module-reference/virtuelle-devices/shutter-simulation/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/rollladen-simulation/",
+            "Virtual Shutter": "Virtueller Rollladen"
         }
     }
 }

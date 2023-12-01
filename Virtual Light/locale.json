@@ -5,7 +5,9 @@
             "Intensity": "Helligkeit",
             "Color": "Farbe",
             "Temperature": "Farbtemperatur",
-            "Light (Simulation)": "Licht (Simulation)"
+            "Light (Simulation)": "Licht (Simulation)",
+            "https://www.symcon.de/en/service/documentation/module-reference/virtuelle-devices/light-simulation/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/licht-simulation/",
+            "Virtual Light": "Virtuelles Licht"
         }
     }
 }
