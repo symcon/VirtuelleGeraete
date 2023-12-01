@@ -9,7 +9,9 @@
             "Maximum Distance between two following values": "Maximaler Abstand zwischen zwei folgenden Werten",
             "Create Chart": "Erstelle Graphen",
             "Use a different profile for each variable": "Verwende für jede Variable ein anderes Profil",
-            "Counter (Simulation)": "Zähler (Simulation)"
+            "Counter (Simulation)": "Zähler (Simulation)",
+            "https://www.symcon.de/en/service/documentation/module-reference/virtuelle-devices/counter-simulation/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/zaehler-simulation/",
+            "Virtual Counter": "Virtueller Zähler"
         }
     }
 }

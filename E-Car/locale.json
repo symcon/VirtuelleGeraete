@@ -28,7 +28,9 @@
             "SoC (Ist)": "Akkuladestand (Ist)",
             "Power (Target)": "Leistung (Soll)",
             "Consumption": "Verbrauch",
-            "Intensity": "Intensität"
+            "Intensity": "Intensität",
+            "https://www.symcon.de/en/service/documentation/module-reference/virtuelle-devices/e-car-simulation/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/e-auto-simulation/",
+            "ECar": "E-Auto"
         }
     }
 }

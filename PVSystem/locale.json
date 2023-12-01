@@ -3,7 +3,9 @@
         "de": {
             "Capacity": "Leistung",
             "Production": "Erzeugung",
-            "PV-System (Simulation)": "PV-Anlage (Simulation)"
+            "PV-System (Simulation)": "PV-Anlage (Simulation)",
+            "https://www.symcon.de/en/service/documentation/module-reference/virtuelle-devices/pv-system-simulation/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/pv-anlage-simulation/",
+            "PVSystem": "PVAnlage"
         }
     }
 }
