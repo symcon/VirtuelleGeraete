@@ -1,0 +1,14 @@
+{
+	"id": "{9CC96E10-C5FC-CBAE-8D96-F0C4D76DF9B8}",
+	"name": "HeatingPump",
+	"type": 3,
+	"vendor": "",
+	"aliases": 
+	[
+		"Heating Pump"
+	],
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "VG"
+}
