@@ -1,0 +1,28 @@
+{
+    "elements": [
+        {
+            "type": "NumberSpinner",
+            "name": "Capacity",
+            "caption": "Capacity",
+            "suffix": "Kilowatt hours"
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "Power",
+            "caption": "Power",
+            "suffix": "Watt"
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "Variance",
+            "caption": "Variance",
+            "suffix": "%"
+        },
+        {
+            "type": "NumberSpinner",
+            "name": "Interval",
+            "caption": "Interval",
+            "suffix": "seconds"
+        }
+    ]
+}

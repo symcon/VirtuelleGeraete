@@ -1,0 +1,14 @@
+{
+    "id": "{92CC7539-5F38-4A34-14F7-F56E39575A9A}",
+    "name": "Virtual Battery Storage",
+    "type": 3,
+    "vendor": "",
+    "aliases": [
+        "Battery Storage (Simulation)"
+    ],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "VG",
+    "url": "https://www.symcon.de/en/service/documentation/module-reference/virtuelle-devices/battery-storage-simulation/"
+}

@@ -1,0 +1,21 @@
+{
+    "translations": {
+        "de": {
+            "Capacity": "Kapazität",
+            "Power": "Leistung",
+            "Variance": "Varianz",
+            "Interval": "Intervall",
+            "seconds": "Sekunden",
+            "Battery Storage (Simulation)": "Batteriespeicher (Simulation)",
+            "Consumption": "Verbrauch",
+            "Charge Power": "Ladeleistung",
+            "Mode": "Modus",
+            "Off": "Aus",
+            "Automatic": "Automatisch",
+            "Manual": "Manuell",
+            "https://www.symcon.de/en/service/documentation/module-reference/virtuelle-devices/batterystorage-simulation/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/heizstab-simulation/",
+            "Virtual Battery Storage": "Virtueller Batteriespeicher",
+            "Kilowatt hours": "Kilowattstunden"
+        }
+    }
+}
