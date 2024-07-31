@@ -1,6 +1,6 @@
 # VirtuelleModule
 
-Folgende Module beinhaltet das VirtuelleModule Repository:
+Folgende Module beinhaltet das VirtuelleModule Repository: 
 
 - __Batterie__ ([Dokumentation](https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/batteriespeicher-simulation/))  
   Simulation eines Batteriespeichers.
