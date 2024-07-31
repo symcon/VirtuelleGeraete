@@ -72,16 +72,6 @@ class VirtualBatteryStorage extends IPSModule
         }
     }
 
-    private function UpdateChargeAction()
-    {
-        if ($this->GetValue('Mode') == 2) {
-            $this->EnableAction('ChargePower');
-        }
-        else {
-            $this->DisableAction('ChargePower');
-        }
-    }
-
     public function Update()
     {
         if (!$this->GetValue('Mode') || ($this->GetValue('SoC') == 0 && $this->GetValue('ChargePower') < 0) || ($this->GetValue('SoC') == 100 && $this->GetValue('ChargePower') > 0)) {
@@ -97,8 +87,18 @@ class VirtualBatteryStorage extends IPSModule
         if ($this->GetValue('Consumption') > 0) {
             $this->SetValue('SoC', min(100, $this->GetValue('SoC') + 1));
         }
-        else if ($this->GetValue('Consumption') < 0) {
+        elseif ($this->GetValue('Consumption') < 0) {
             $this->SetValue('SoC', max(0, $this->GetValue('SoC') - 1));
+        }
+    }
+
+    private function UpdateChargeAction()
+    {
+        if ($this->GetValue('Mode') == 2) {
+            $this->EnableAction('ChargePower');
+        }
+        else {
+            $this->DisableAction('ChargePower');
         }
     }
 }
