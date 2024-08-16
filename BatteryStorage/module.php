@@ -12,33 +12,30 @@ class VirtualBatteryStorage extends IPSModule
         $this->RegisterPropertyInteger('Variance', 6);
         $this->RegisterPropertyInteger('Interval', 3);
 
-        $profileNameChangeMode = 'ChargeMode';
-        if (!IPS_VariableProfileExists($profileNameChangeMode)) {
-            IPS_CreateVariableProfile($profileNameChangeMode, VARIABLETYPE_INTEGER);
-            IPS_SetVariableProfileValues($profileNameChangeMode, 0, 2, 0);
-            IPS_SetVariableProfileAssociation($profileNameChangeMode, 0, $this->Translate('Off'), '', -1);
-            IPS_SetVariableProfileAssociation($profileNameChangeMode, 1, $this->Translate('Automatic'), '', -1);
-            IPS_SetVariableProfileAssociation($profileNameChangeMode, 2, $this->Translate('Manual'), '', -1);
-        }
-
-        $this->RegisterVariableInteger('Mode', $this->Translate('Mode'), $profileNameChangeMode, 0);
-        $this->EnableAction('Mode');
-
-        $profileNamePower = 'ChargeSlider_' . $this->ReadPropertyFloat('Power') . '_' . $this->ReadPropertyFloat('Power');
+        $profileNamePower = 'ChargeSlider_' . $this->ReadPropertyFloat('Power');
         if (!IPS_VariableProfileExists($profileNamePower)) {
             IPS_CreateVariableProfile($profileNamePower, VARIABLETYPE_FLOAT);
             IPS_SetVariableProfileText($profileNamePower, '', ' W');
-            IPS_SetVariableProfileValues($profileNamePower, -$this->ReadPropertyFloat('Power'), $this->ReadPropertyFloat('Power'), 100);
+            IPS_SetVariableProfileValues($profileNamePower, 0, $this->ReadPropertyFloat('Power'), 100);
             IPS_SetVariableProfileDigits($profileNamePower, 0);
         }
 
-        $this->RegisterVariableFloat('ChargePower', $this->Translate('Charge Power'), $profileNamePower, 1);
+        $profileNameCapacity = 'Capacity_' . $this->ReadPropertyFloat('Capacity');
+        if (!IPS_VariableProfileExists($profileNameCapacity)) {
+            IPS_CreateVariableProfile($profileNameCapacity, VARIABLETYPE_FLOAT);
+            IPS_SetVariableProfileText($profileNameCapacity, '', ' kWh');
+            IPS_SetVariableProfileValues($profileNameCapacity, 0, $this->ReadPropertyFloat('Capacity'), 100);
+            IPS_SetVariableProfileDigits($profileNameCapacity, 2);
+        }
 
-        $this->UpdateChargeAction();
+        $this->RegisterVariableFloat('ChargePower', $this->Translate('Charge Power'), $profileNamePower);
+        $this->EnableAction('ChargePower');
+        $this->RegisterVariableFloat('DischargePower', $this->Translate('Discharge Power'), $profileNamePower);
+        $this->EnableAction('DischargePower');
 
-        $this->RegisterVariableFloat('Consumption', $this->Translate('Consumption'), '~Watt', 2);
+        $this->RegisterVariableFloat('Consumption', $this->Translate('Consumption'), '~Watt');
 
-        $this->RegisterVariableInteger('SoC', $this->Translate('SoC'), '~Intensity.100', 3);
+        $this->RegisterVariableFloat('SoC', $this->Translate('SoC'), $profileNameCapacity);
         $this->EnableAction('SoC');
 
         $this->RegisterTimer('Update', 0, 'VG_Update($_IPS["TARGET"]);');
@@ -58,10 +55,11 @@ class VirtualBatteryStorage extends IPSModule
         switch ($Ident) {
             case 'ChargePower':
                 $this->SetValue('ChargePower', $Value);
+                $this->SetValue('DischargePower', 0);
                 break;
-            case 'Mode':
-                $this->SetValue('Mode', $Value);
-                $this->UpdateChargeAction();
+            case 'DischargePower':
+                $this->SetValue('DischargePower', $Value);
+                $this->SetValue('ChargePower', 0);
                 break;
             case 'SoC':
                 $this->SetValue('SoC', $Value);
@@ -74,31 +72,20 @@ class VirtualBatteryStorage extends IPSModule
 
     public function Update()
     {
-        if (!$this->GetValue('Mode') || ($this->GetValue('SoC') == 0 && $this->GetValue('ChargePower') < 0) || ($this->GetValue('SoC') == 100 && $this->GetValue('ChargePower') > 0)) {
+        $charge = $this->GetValue('ChargePower') - $this->GetValue('DischargePower');
+        if (($this->GetValue('SoC') == 0 && ($charge < 0)) || ($this->GetValue('SoC') == 100 && ($charge > 0))) {
             $this->SetValue('Consumption', 0);
         }
         else {
-            $this->SetValue('Consumption', $this->GetValue('ChargePower') * ((100 + (rand(0, $this->ReadPropertyInteger('Variance') * 100) / 100) - ($this->ReadPropertyInteger('Variance') / 2)) / 100));
+            $this->SetValue('Consumption', $charge * ((100 + (rand(0, $this->ReadPropertyInteger('Variance') * 100) / 100) - ($this->ReadPropertyInteger('Variance') / 2)) / 100));
         }
     }
 
     public function Charge()
     {
-        if ($this->GetValue('Consumption') > 0) {
-            $this->SetValue('SoC', min(100, $this->GetValue('SoC') + 1));
-        }
-        elseif ($this->GetValue('Consumption') < 0) {
-            $this->SetValue('SoC', max(0, $this->GetValue('SoC') - 1));
-        }
-    }
-
-    private function UpdateChargeAction()
-    {
-        if ($this->GetValue('Mode') == 2) {
-            $this->EnableAction('ChargePower');
-        }
-        else {
-            $this->DisableAction('ChargePower');
-        }
+         // As charge runs every second, we produced Consumption W/s in that time
+         // Convert it to kW/h
+        $newSoC = $this->GetValue('SoC') + ($this->GetValue('Consumption') / 60 / 60 / 1000);
+        $this->SetValue('SoC', max(0, min($this->ReadPropertyFloat('Capacity'), $newSoC)));
     }
 }
