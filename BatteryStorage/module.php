@@ -83,8 +83,8 @@ class VirtualBatteryStorage extends IPSModule
 
     public function Charge()
     {
-         // As charge runs every second, we produced Consumption W/s in that time
-         // Convert it to kW/h
+        // As charge runs every second, we produced Consumption W/s in that time
+        // Convert it to kW/h
         $newSoC = $this->GetValue('SoC') + ($this->GetValue('Consumption') / 60 / 60 / 1000);
         $this->SetValue('SoC', max(0, min($this->ReadPropertyFloat('Capacity'), $newSoC)));
     }
