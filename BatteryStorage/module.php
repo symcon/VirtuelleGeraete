@@ -12,6 +12,17 @@ class VirtualBatteryStorage extends IPSModule
         $this->RegisterPropertyInteger('Variance', 6);
         $this->RegisterPropertyInteger('Interval', 3);
 
+        $this->RegisterVariableFloat('Consumption', $this->Translate('Consumption'), '~Watt');
+
+        $this->RegisterTimer('Update', 0, 'VG_Update($_IPS["TARGET"]);');
+
+        $this->RegisterTimer('Charge', 1000, 'VG_Charge($_IPS["TARGET"]);');
+    }
+
+    public function ApplyChanges()
+    {
+        parent::ApplyChanges();
+
         $profileNamePower = 'ChargeSlider_' . $this->ReadPropertyFloat('Power');
         if (!IPS_VariableProfileExists($profileNamePower)) {
             IPS_CreateVariableProfile($profileNamePower, VARIABLETYPE_FLOAT);
@@ -33,19 +44,8 @@ class VirtualBatteryStorage extends IPSModule
         $this->RegisterVariableFloat('DischargePower', $this->Translate('Discharge Power'), $profileNamePower);
         $this->EnableAction('DischargePower');
 
-        $this->RegisterVariableFloat('Consumption', $this->Translate('Consumption'), '~Watt');
-
         $this->RegisterVariableFloat('SoC', $this->Translate('SoC'), $profileNameCapacity);
         $this->EnableAction('SoC');
-
-        $this->RegisterTimer('Update', 0, 'VG_Update($_IPS["TARGET"]);');
-
-        $this->RegisterTimer('Charge', 1000, 'VG_Charge($_IPS["TARGET"]);');
-    }
-
-    public function ApplyChanges()
-    {
-        parent::ApplyChanges();
 
         $this->SetTimerInterval('Update', $this->ReadPropertyInteger('Interval') * 1000);
     }

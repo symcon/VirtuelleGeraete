@@ -12,7 +12,8 @@
             "Discharge Power": "Entladeleistung",
             "https://www.symcon.de/en/service/documentation/module-reference/virtuelle-devices/batterystorage-simulation/": "https://www.symcon.de/de/service/dokumentation/modulreferenz/virtuelle-geraete/heizstab-simulation/",
             "Virtual Battery Storage": "Virtueller Batteriespeicher",
-            "Kilowatt hours": "Kilowattstunden"
+            "Kilowatt hours": "Kilowattstunden",
+            "SoC (Percentage)": "SoC (Prozentual)"
         }
     }
 }
