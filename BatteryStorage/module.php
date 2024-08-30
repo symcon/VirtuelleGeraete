@@ -17,6 +17,8 @@ class VirtualBatteryStorage extends IPSModule
         $this->RegisterTimer('Update', 0, 'VG_Update($_IPS["TARGET"]);');
 
         $this->RegisterTimer('Charge', 1000, 'VG_Charge($_IPS["TARGET"]);');
+
+        $this->RegisterVariableFloat('SoCPercentage', $this->Translate('SoC (Percentage)'), $profileNameCapacity);
     }
 
     public function ApplyChanges()
@@ -63,6 +65,7 @@ class VirtualBatteryStorage extends IPSModule
                 break;
             case 'SoC':
                 $this->SetValue('SoC', $Value);
+                $this->SetValue('SoCPercentage', $Value / $this->ReadPropertyFloat('Capacity'));
                 break;
         }
         if (!$this->ReadPropertyInteger('Interval')) {
@@ -86,6 +89,6 @@ class VirtualBatteryStorage extends IPSModule
         // As charge runs every second, we produced Consumption W/s in that time
         // Convert it to kW/h
         $newSoC = $this->GetValue('SoC') + ($this->GetValue('Consumption') / 60 / 60 / 1000);
-        $this->SetValue('SoC', max(0, min($this->ReadPropertyFloat('Capacity'), $newSoC)));
+        $this->RequestAction('SoC', max(0, min($this->ReadPropertyFloat('Capacity'), $newSoC)));
     }
 }
