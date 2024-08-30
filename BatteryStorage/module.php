@@ -18,7 +18,7 @@ class VirtualBatteryStorage extends IPSModule
 
         $this->RegisterTimer('Charge', 1000, 'VG_Charge($_IPS["TARGET"]);');
 
-        $this->RegisterVariableFloat('SoCPercentage', $this->Translate('SoC (Percentage)'), $profileNameCapacity);
+        $this->RegisterVariableFloat('SoCPercentage', $this->Translate('SoC (Percentage)'), '~Intensity.1');
     }
 
     public function ApplyChanges()
