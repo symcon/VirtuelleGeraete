@@ -255,7 +255,12 @@ class ECar extends IPSModule
                         break;
                     case 2:
                         if (!$this->ReadPropertyBoolean('SplitPhases')) {
-                            $value = $this->GetValue('CurrentL12') * $volt * $this->GetValue('Phases');
+                            if ($this->ReadPropertyBoolean('Switching')) {
+                                $value = $this->GetValue('CurrentL12') * $volt * $this->GetValue('Phases');
+                            }
+                            else {
+                                $value = $this->GetValue('CurrentL123') * $volt * 2;
+                            }
                         } elseif ($this->ReadPropertyBoolean('SplitPhases')) {
                             $value += $this->GetValue('CurrentL1') * $volt;
                             $value += $this->GetValue('CurrentL2') * $volt;
@@ -263,7 +268,12 @@ class ECar extends IPSModule
                         break;
                     case 3:
                         if (!$this->ReadPropertyBoolean('SplitPhases')) {
-                            $value = $this->GetValue('CurrentL123') * $volt * $this->GetValue('Phases');
+                            if ($this->ReadPropertyBoolean('Switching')) {
+                                $value = $this->GetValue('CurrentL123') * $volt * $this->GetValue('Phases');
+                            }
+                            else {
+                                $value = $this->GetValue('CurrentL123') * $volt * 3;
+                            }
                         } elseif ($this->ReadPropertyBoolean('SplitPhases')) {
                             $value += $this->GetValue('CurrentL1') * $volt;
                             $value += $this->GetValue('CurrentL2') * $volt;
